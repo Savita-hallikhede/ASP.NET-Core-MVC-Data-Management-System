@@ -1,0 +1,45 @@
+﻿@using ServiceContracts.DTO
+@model List<PersonResponse>
+<html>
+<head>
+	<link rel="stylesheet" href="~/bootstrap/css/StyleSheet1.css" />
+
+	<title>Get All Persons</title>
+</head>
+<body>
+
+	<h1>Get All Persons Data</h1>
+	<table border="1">
+		<tr>
+		<tr>
+			<th>Person ID</th>
+			<th>Person Name</th>
+			<th>Person Email</th>
+			<th>Date Of Birth</th>
+			<th>Gender</th>
+			<th>Country ID</th>
+			<th>Country</th>
+			<th>Address</th>
+			<th>Receive NewsLetters</th>
+		</tr>
+
+
+		@foreach (PersonResponse data in Model)
+		{
+			<tr>
+				<td>@data.PersonId</td>
+				<td>@data.PersonName</td>
+				<td>@data.PersonEmail</td>
+				<td>@data.DateOfBirth</td>
+				<td>@data.Gender</td>
+				<td>@data.CountryId</td>
+				<td>@data.Country</td>
+				<td>@data.Address</td>
+				<td>@data.ReceiveNewsLetters</td>
+				<td><button type="button">Edit</button></td>
+				<td><button type="button">Delete</button></td>
+			</tr>
+		}
+	</table>
+</body>
+</html>

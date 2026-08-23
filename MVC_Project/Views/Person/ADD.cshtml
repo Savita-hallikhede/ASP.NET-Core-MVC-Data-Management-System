@@ -1,0 +1,51 @@
+﻿
+@model ServiceContracts.DTO.PersonAddRequest
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/bootstrap/css/StyleSheet1.css" />
+
+    <title>ADD Person Data</title>
+</head>
+<body>
+    <form asp-controller="Person" asp-action="ADD" method="post">
+
+        <h1>ADD Person</h1>
+
+        <label>Enter Name</label>
+        <input asp-for="PersonName" />
+        <br /><br />
+
+        <label>Enter Email</label>
+        <input asp-for="PersonEmail" />
+        <br /><br />
+
+        <label>Enter Date of Birth</label>
+        <input asp-for="DateOfBirth" />
+        <br /><br />
+
+        <label>Enter Gender</label>
+        <input asp-for="Gender" />
+        <br /><br />
+
+        <label>Enter Country</label>
+        <select asp-for="CountryId"
+               asp-items="ViewBag.AllCountrydata_viewbag">
+               <options> --------Please select Country-------- </options>
+               </select>
+        <br /><br />
+
+        <label>Enter Address</label>
+        <input asp-for="Address" />
+        <br /><br />
+
+        <label>Receive News Letters</label>
+        <input asp-for="ReceiveNewsLetters" />
+        <br /><br />
+
+        <button type="submit">Save</button>
+
+    </form>
+
+</body>
+</html>

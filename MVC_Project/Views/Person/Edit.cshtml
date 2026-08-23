@@ -1,0 +1,62 @@
+﻿@model ServiceContracts.DTO.PersonUpdateRequest
+<html>
+	<head>
+		<title></title>
+    <link rel="stylesheet" href="~/bootstrap/css/StyleSheet1.css" />
+	</head>
+	<body>
+		<h1>Edit Person</h1>
+		<form asp-controller="Person"
+		 asp-action="Edit"
+		 method="post">
+	 
+		 <input type="hidden" asp-for="PersonId"/>
+
+		 <label>Enter Name></label>
+		 <input asp-for="PersonName"/>
+
+        <br /><br />
+
+        <label>Enter Email</label>
+        <input asp-for="PersonEmail" />
+
+        <br /><br />
+
+        <label>Enter Date of Birth</label>
+        <input asp-for="DateOfBirth" />
+
+        <br /><br />
+
+        <label>Enter Gender</label>
+        <input asp-for="Gender" />
+
+        <br /><br />
+
+        <label>Enter Country</label>
+
+        <select asp-for="CountryId"
+                asp-items="ViewBag.AllCountrydata_viewbag">
+
+            <option value="">
+                -------- Please select Country --------
+            </option>
+
+        </select>
+
+        <br /><br />
+
+        <label>Enter Address</label>
+        <input asp-for="Address" />
+
+        <br /><br />
+
+        <label>Receive News Letters</label>
+        <input asp-for="ReceiveNewsLetters" />
+
+        <br /><br />
+
+        <button type="submit">Save</button>
+
+	 </form>
+	</body>
+</html>

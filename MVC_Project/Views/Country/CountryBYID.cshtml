@@ -1,0 +1,16 @@
+﻿@model ServiceContracts.DTO.CountryResponse
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+	<form asp-controller="Country" asp-action="CountryBYID" method="post">
+		<h1>Country Data by CountryId</h1>
+		<label>Enter CountryId</label>
+		<input asp-for="CountryId" />
+	<br />
+	<br />
+	<button type="submit">Get Country</button>
+	</form>
+	</body>
+</html>

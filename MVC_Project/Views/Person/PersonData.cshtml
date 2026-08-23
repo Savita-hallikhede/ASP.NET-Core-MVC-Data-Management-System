@@ -1,0 +1,40 @@
+﻿@model ServiceContracts.DTO.PersonResponse
+
+<html>
+
+	<head>
+	<link rel="stylesheet" href="~/bootstrap/css/StyleSheet1.css" />
+    <title>Successfully Added Person Data</title>
+</head>
+	<body>
+	<h1>Person Data Added Successfully</h1>
+	<table border="1">
+
+	<tr><th><strong>Person ID:</strong></th>
+		<th><strong>Person Name:</strong></th>
+		<th><strong>Person Email:</strong></th>
+		<th><strong>Date of Birth:</strong></th>
+		<th><strong>Gender:</strong></th>
+		<th><strong>CountryId:</strong></th>
+		<th><strong>Country:</strong></th>
+		<th><strong>Address:</strong></th>
+		<th><strong>Receive News Letters:</strong></th>
+		<tr/>
+
+		<tr>
+		<td>@Model.PersonId</td>
+		<td>@Model.PersonName</td>
+		<td>@Model.PersonEmail</td>
+		<td>@Model.DateOfBirth</td>
+		<td>@Model.Gender</td>
+		<td>@Model.CountryId</td>
+		<td>@Model.Country</td>
+		<td>@Model.Address</td>
+		<td>@Model.ReceiveNewsLetters</td>
+		<td><button type="button">Edit</button></td>
+		<td><button type="button">Delete</button></td>
+		</tr>
+</table>
+	</body>
+
+</html>

@@ -13,7 +13,7 @@ namespace MVC_Project.Controllers
         }
 
         [HttpGet]
-        [Route("/")]
+        //[Route("/")]
         public ViewResult ADD()
         {
             return View();
@@ -35,6 +35,28 @@ namespace MVC_Project.Controllers
         }
 
 
+        [HttpGet]
+        public IActionResult GetCountries()
+        {
+            List<CountryResponse> countries = Country.GetAllCountries();
+
+            return View(countries);
+        }
+
+        [HttpGet]
+        public IActionResult CountryBYID()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CountryBYID(Guid countryId)
+        {
+            CountryResponse country = Country.GetCountryById(countryId);
+            return View("CountryDetails", country);
+        }
+
+       
 
     }
 }

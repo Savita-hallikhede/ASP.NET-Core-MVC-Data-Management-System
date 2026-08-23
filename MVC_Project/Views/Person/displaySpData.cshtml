@@ -1,0 +1,60 @@
+﻿@model ServiceContracts.DTO.PersonResponse
+
+<html>
+<head>
+    <title>Person Details</title>
+</head>
+
+<body>
+
+    <h1>Person Details</h1>
+
+    <table>
+        <tr>
+            <th>Person ID</th>
+            <td>@Model.PersonId</td>
+        </tr>
+
+        <tr>
+            <th>Person Name</th>
+            <td>@Model.PersonName</td>
+        </tr>
+
+        <tr>
+            <th>Person Email</th>
+            <td>@Model.PersonEmail</td>
+        </tr>
+
+        <tr>
+            <th>Date of Birth</th>
+            <td>@Model.DateOfBirth</td>
+        </tr>
+
+        <tr>
+            <th>Gender</th>
+            <td>@Model.Gender</td>
+        </tr>
+
+        <tr>
+            <th>Country ID</th>
+            <td>@Model.CountryId</td>
+        </tr>
+
+        <tr>
+            <th>Country</th>
+            <td>@Model.Country</td>
+        </tr>
+
+        <tr>
+            <th>Address</th>
+            <td>@Model.Address</td>
+        </tr>
+
+        <tr>
+            <th>Receive News Letters</th>
+            <td>@Model.ReceiveNewsLetters</td>
+        </tr>
+    </table>
+
+</body>
+</html>

@@ -11,9 +11,9 @@ namespace ServiceContracts.Interface
     {
         CountryResponse AddCountry(CountryAddRequest countryAddRequest);
 
-        //List<CountryResponse> GetAllCountries();
+        List<CountryResponse> GetAllCountries();
 
-        //CountryResponse GetCountryById(Guid countryId);
+        CountryResponse GetCountryById(Guid countryId);
 
     }
 }

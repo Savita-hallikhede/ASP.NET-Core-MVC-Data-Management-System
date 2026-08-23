@@ -1,0 +1,274 @@
+﻿/* Apply the style to the whole application */
+body {
+    /* Set the font style */
+    font-family: Arial, Helvetica, sans-serif;
+    /* Set a light background color */
+    background-color: #f5f7fa;
+    /* Remove default body margin */
+    margin: 0;
+    /* Remove default body padding */
+    padding: 0;
+    /* Set the default text color */
+    color: #333;
+}
+
+
+/* Apply styling to all forms */
+form {
+    /* Set the form width */
+    width: 500px;
+    /* Center the form horizontally and add top/bottom space */
+    margin: 40px auto;
+    /* Add space inside the form */
+    padding: 30px;
+    /* Set the form background color */
+    background-color: white;
+    /* Make the corners rounded */
+    border-radius: 12px;
+    /* Add shadow around the form */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Style all h1 headings */
+h1 {
+    /* Center the heading */
+    text-align: center;
+    /* Set heading color */
+    color: #0d6efd;
+    /* Add space below the heading */
+    margin-bottom: 30px;
+}
+
+
+/* Style all labels */
+label {
+    /* Display the label on a separate line */
+    display: block;
+    /* Make the label bold */
+    font-weight: bold;
+    /* Add space below the label */
+    margin-bottom: 7px;
+    /* Add space above the label */
+    margin-top: 15px;
+}
+
+
+/* Style text, email, date, datetime and password inputs */
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="password"] {
+    /* Make the input use the complete form width */
+    width: 100%;
+    /* Add space inside the input */
+    padding: 10px;
+    /* Include padding inside the input width */
+    box-sizing: border-box;
+    /* Add a light border */
+    border: 1px solid #ccc;
+    /* Make input corners rounded */
+    border-radius: 6px;
+    /* Set input text size */
+    font-size: 15px;
+}
+
+
+/* Apply style when the user clicks inside an input */
+input:focus {
+    /* Change the input border to blue */
+    border-color: #0d6efd;
+    /* Remove the browser's default outline */
+    outline: none;
+    /* Add a blue shadow around the input */
+    box-shadow: 0 0 5px rgba(13, 110, 253, 0.3);
+}
+
+
+/* Style checkbox inputs */
+input[type="checkbox"] {
+    /* Set checkbox width */
+    width: 18px;
+    /* Set checkbox height */
+    height: 18px;
+    /* Add space to the right of checkbox */
+    margin-right: 8px;
+    /* Align checkbox vertically */
+    vertical-align: middle;
+}
+
+
+/* Style buttons and submit buttons */
+button,
+input[type="submit"] {
+    /* Set button background color */
+    background-color: #0d6efd;
+    /* Set button text color */
+    color: white;
+    /* Remove default button border */
+    border: none;
+    /* Add space inside the button */
+    padding: 10px 25px;
+    /* Make button corners rounded */
+    border-radius: 6px;
+    /* Set button text size */
+    font-size: 16px;
+    /* Show hand cursor when hovering */
+    cursor: pointer;
+    /* Add space above the button */
+    margin-top: 20px;
+}
+
+
+    /* Change button color when mouse is placed over it */
+    button:hover,
+    input[type="submit"]:hover {
+        /* Set a darker blue color */
+        background-color: #0b5ed7;
+    }
+
+
+/* Style all tables */
+table {
+    /* Make the table use 90% of the page width */
+    width: 90%;
+    /* Center the table and add top/bottom space */
+    margin: 40px auto;
+    /* Remove space between table borders */
+    border-collapse: collapse;
+    /* Set table background color */
+    background-color: white;
+    /* Add shadow around the table */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Style table heading and data cells */
+th,
+td {
+    /* Add space inside each cell */
+    padding: 12px;
+    /* Add border around each cell */
+    border: 1px solid #ddd;
+    /* Align text to the left */
+    text-align: left;
+}
+
+
+/* Style table headings */
+th {
+    /* Set heading background color */
+    background-color: #0d6efd;
+    /* Set heading text color */
+    color: white;
+}
+
+
+/* Change table row background when mouse is over it */
+tr:hover {
+    /* Set hover background color */
+    background-color: #f1f1f1;
+}
+
+
+/* Style all paragraphs */
+p {
+    /* Add space above and below paragraphs */
+    margin: 10px 0;
+}
+
+
+/* ==========================================
+   DISPLAY PAGE
+   ========================================== */
+
+
+/* Create a nice box for displaying data */
+.display-container {
+    /* Set the width of the display area */
+    width: 700px;
+    /* Center the display area */
+    margin: 40px auto;
+    /* Add space inside the display area */
+    padding: 30px;
+    /* Set background color */
+    background-color: white;
+    /* Make corners rounded */
+    border-radius: 12px;
+    /* Add shadow around the display area */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Style each displayed data row */
+.display-row {
+    /* Use flexbox to place label and value side by side */
+    display: flex;
+    /* Add space inside each row */
+    padding: 12px;
+    /* Add a line below each row */
+    border-bottom: 1px solid #ddd;
+}
+
+
+    /* Style the label inside display rows */
+    .display-row strong {
+        /* Give the label a fixed width */
+        width: 200px;
+        /* Set label color */
+        color: #333;
+    }
+
+
+    /* Style the value inside display rows */
+    .display-row span {
+        /* Set value color */
+        color: #555;
+        /* Prevent long values from going outside the box */
+        word-break: break-word;
+    }
+
+
+    /* Remove border from the last display row */
+    .display-row:last-child {
+        /* Remove the bottom border */
+        border-bottom: none;
+    }
+
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+
+
+/* Apply these styles when screen width is 700px or smaller */
+@media (max-width: 700px) {
+
+    /* Make forms fit smaller screens */
+    form {
+        width: 85%;
+    }
+
+    /* Make display container fit smaller screens */
+    .display-container {
+        width: 85%;
+    }
+
+    /* Stack display label and value vertically */
+    .display-row {
+        display: block;
+    }
+
+        /* Make display label full width */
+        .display-row strong {
+            width: auto;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+    /* Make table text slightly smaller */
+    table {
+        font-size: 13px;
+    }
+}

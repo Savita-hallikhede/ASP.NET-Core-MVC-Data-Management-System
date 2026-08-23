@@ -13,6 +13,8 @@ namespace Service
 {
     public class CountryService : ICountrySC
     {
+
+       // ---------------------------------------------------------------------------------------------------
         private List<Country> _countries;
 
         private readonly DbContextdata _db;
@@ -53,10 +55,66 @@ namespace Service
 
         }
 
+        // ---------------------------------------------------------------------------------------------------
 
 
+        public List<CountryResponse> GetAllCountries()
+        {
 
+
+            //----display hardcoded data
+            /*List<CountryResponse> countryResponsesObj = new List<CountryResponse>();
+
+            CountryResponse obj = new CountryResponse();
+            obj.CountryId = Guid.Parse("6DDA6667-6B67-454B-8DF0-40B0DC72505D");
+            obj.CountryName = "Austrelia";
+
+            CountryResponse obj1 = new CountryResponse();
+            obj1.CountryId = Guid.Parse("2712D163-E2AA-4307-8A63-406A3853F2CB");
+            obj1.CountryName = "UK";
+
+            CountryResponse obj2 = new CountryResponse();
+            obj2.CountryId = Guid.Parse("2712D163-E2AA-4307-8A63-406A3853F2CB");
+            obj2.CountryName = "Newzland";
+
+
+            countryResponsesObj.Add(obj);
+            countryResponsesObj.Add(obj1);
+            countryResponsesObj.Add(obj2);
+
+
+            return countryResponsesObj;*/
+
+
+            //--------------Fetching data from database
+            List<Country> countries = _db.Countries.ToList();
+            List<CountryResponse> countryResponsesObj = new List<CountryResponse>();
+            foreach (Country country in countries)
+            {
+                CountryResponse response = new CountryResponse();
+
+                response.CountryId = country.CountryId;
+                response.CountryName = country.CountryName;
+
+                countryResponsesObj.Add(response);
+            }
+
+            return countryResponsesObj;
+        }
+        //---------------------------------------------------------------------------------------------------
+
+        public CountryResponse GetCountryById(Guid countryId)
+        {
+            Country countries = _db.Countries.Where(temp => temp.CountryId == countryId).SingleOrDefault();
+
+
+            CountryResponse obj = new CountryResponse
+            { CountryName = countries.CountryName, CountryId = countries.CountryId };
+            return obj;
+
+        }
+    }
 
 
     }
-}
+    

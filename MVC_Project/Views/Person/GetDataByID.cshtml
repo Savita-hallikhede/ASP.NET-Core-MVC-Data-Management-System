@@ -1,0 +1,17 @@
+﻿@model ServiceContracts.DTO.PersonResponse
+
+<html>
+	<head>
+	<link rel="stylesheet" href="~/bootstrap/css/StyleSheet1.css" />
+
+		<title>Get Persons Data By ID</title>
+</head>
+<body>
+	<form asp-action="GetDataByID" asp-controller="Person" method="post">
+	<label>Enter PersonID</label>
+		<input asp-for="PersonId" />
+		<br /><br />
+		<button type="submit">Get Person</button>
+	</form>
+</body>
+</html>

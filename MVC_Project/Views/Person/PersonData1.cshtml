@@ -1,0 +1,51 @@
+﻿@model List<ServiceContracts.DTO.PersonResponse>
+
+
+	
+	<html>
+		<head>
+	    <link rel="stylesheet" href="~/bootstrap/css/StyleSheet1.css" />
+		</head>
+         
+		<body>
+	<table>
+	<h1>Person Data</h1>
+	<tr>
+			<th>Name </th>
+			<th>Email</th>
+			<th>Date of Birth</th>
+			<th>Gender</th>
+			<th>Address</th>
+			<th>Country</th>
+			<th>ReceiveNewsLetters</th>
+		</tr>
+
+	@foreach (var person in Model)
+	{
+		<tr>
+			<td>@person.PersonName</td>
+			<td>@person.PersonEmail</td>
+			<td>@person.DateOfBirth</td>
+			<td>@person.Gender</td>
+			<td>@person.Address</td>
+			<td>@person.Country</td>
+			<td>@person.ReceiveNewsLetters</td>
+
+			<td>
+				<a asp-controller="Person"
+				asp-action="Edit"
+				
+				asp-route-id="@person.PersonId">Edit</a>
+			</td>
+				<td>
+					<a asp-controller="Person"
+					   asp-action="Delete"
+					   asp-route-id="@person.PersonId">Delete</a>
+				</td>
+
+		</tr>
+		
+	}
+</table>
+</body>
+</html>

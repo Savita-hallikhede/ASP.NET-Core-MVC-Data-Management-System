@@ -36,6 +36,41 @@ namespace Entity.Migrations
 
                     b.ToTable("Countries");
                 });
+
+            modelBuilder.Entity("Entity.Person", b =>
+                {
+                    b.Property<Guid>("PersonId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("CountryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PersonEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PersonName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("ReceiveNewsLetters")
+                        .HasColumnType("bit");
+
+                    b.HasKey("PersonId");
+
+                    b.ToTable("Persons");
+                });
 #pragma warning restore 612, 618
         }
     }

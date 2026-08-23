@@ -1,0 +1,22 @@
+﻿@* @model ServiceContracts.DTO.CountryResponse
+ *@
+
+@using ServiceContracts.DTO;
+<ServiceContracts.DTO.CountryResponse>
+
+<h2>Country List</h2>
+
+<table border="1">
+    <tr>
+        <th>Country ID</th>
+        <th>Country Name</th>
+    </tr>
+
+    @foreach (CountryResponse item in Model)
+    {
+        <tr>
+            <td>@item.CountryId</td>
+            <td>@item.CountryName</td>
+        </tr>
+    }
+</table>

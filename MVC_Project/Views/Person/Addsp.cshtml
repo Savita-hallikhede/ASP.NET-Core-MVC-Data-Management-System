@@ -1,0 +1,47 @@
+﻿@model ServiceContracts.DTO.PersonAddRequest
+<html>
+	<head>
+		<title></title>
+	</head>
+
+	<body>
+        <form asp-action="Addsp" asp-controller="Person" method="post">
+    <label>Enter Name</label>
+    <input asp-for="PersonName" />
+    <br />
+    <br />
+
+    <label>Enter Email</label>
+    <input asp-for="PersonEmail" />
+    <br />
+    <br />
+
+    <label>Enter Date of Birth</label>
+    <input asp-for="DateOfBirth" />
+    <br />
+    <br />
+
+    <label>Enter Gender</label>
+    <input asp-for="Gender" />
+    <br />
+    <br />
+
+    <label>Enter Country</label>
+    <input asp-for="Country" />
+    <br />
+    <br />
+
+		<label>Enter Address</label><a href="s:\mvc_big_app\mvc_project\mvc_project\views\person\addsp.cshtml">s:\mvc_big_app\mvc_project\mvc_project\views\person\addsp.cshtml</a>
+    <input asp-for="Address" />
+    <br />
+    <br />
+
+    <label>Receive News Letters</label>
+    <input asp-for="ReceiveNewsLetters" />
+    <br />
+    <br />
+
+    <button type="submit">Save</button>
+    </form>
+	</body>
+</html>
