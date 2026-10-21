@@ -19,13 +19,13 @@ namespace ServiceContracts.Interface
 
         PersonResponse UpdatePerson(PersonUpdateRequest personupdateRequest);
 
-        //bool DeletePerson(Guid personId);
+        Task<bool> DeletePerson(Guid personId);
 
-        //PersonResponse GetPersonByEMPID(Guid employeeId);
+       
 
-        //List<PersonResponse> GetFilterPerson(string Searchby, string Searchstring);
+        Task<List<PersonResponse>> GetFilterPerson(string Searchby, string Searchstring);
 
-        //List<PersonResponse> GetSortedPerson(List<PersonResponse> PersonResponse, string sortBy, SortOrderOptions sortOrderOptions);
+        Task<List<PersonResponse>> GetSortedPerson(List<PersonResponse> PersonResponse, string sortBy, SortOrderOptions sortOrderOptions);
 
 
 

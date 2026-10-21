@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using ServiceContracts.DTO;
+using ServiceContracts.Enum;
 using ServiceContracts.Interface;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public class PersonService:IPersonSC
+    public class PersonService : IPersonSC
     {
         private readonly DbContextdata _db;
 
@@ -44,8 +45,8 @@ namespace Service
             person.PersonEmail = personAddRequest.PersonEmail;
             person.DateOfBirth = personAddRequest.DateOfBirth;
             person.Gender = personAddRequest.Gender;
-            person.CountryId = Guid.NewGuid();
-            person.Country = personAddRequest.Country;
+            person.CountryId = personAddRequest.CountryId; ;
+            //person.Country = personAddRequest.Country;
             person.Address = personAddRequest.Address;
             person.ReceiveNewsLetters = personAddRequest.ReceiveNewsLetters;
 
@@ -80,7 +81,7 @@ namespace Service
             personResponse.DateOfBirth = person.DateOfBirth;
             personResponse.Gender = person.Gender;
             personResponse.CountryId = person.CountryId;
-            personResponse.Country = person.Country;
+           // personResponse.Country = person.Country;
             personResponse.Address = person.Address;
             personResponse.ReceiveNewsLetters = person.ReceiveNewsLetters;
 
@@ -137,7 +138,7 @@ namespace Service
                 personResponse.PersonEmail = person1.PersonEmail;
                 personResponse.DateOfBirth = person1.DateOfBirth;
                 personResponse.Gender = person1.Gender;
-                personResponse.Country = person1.Country;
+               // personResponse.Country = person1.Country;
                 personResponse.Address = person1.Address;
                 personResponse.ReceiveNewsLetters = person1.ReceiveNewsLetters;
 
@@ -180,7 +181,7 @@ namespace Service
             obj.PersonEmail = person.PersonEmail;
             obj.DateOfBirth = person.DateOfBirth;
             obj.Gender = person.Gender;
-            obj.Country = person.Country;
+            //obj.Country = person.Country;
             obj.Address = person.Address;
             obj.ReceiveNewsLetters = person.ReceiveNewsLetters;
 
@@ -206,7 +207,7 @@ namespace Service
             person.DateOfBirth = personupdateRequest.DateOfBirth;
             person.Gender = personupdateRequest.Gender;
             person.CountryId = personupdateRequest.CountryId;
-            person.Country = personupdateRequest.Country;
+            //person.Country = personupdateRequest.Country;
             person.Address = personupdateRequest.Address;
             person.ReceiveNewsLetters = personupdateRequest.ReceiveNewsLetters;
 
@@ -223,7 +224,7 @@ namespace Service
             personResponse.DateOfBirth = person.DateOfBirth;
             personResponse.Gender = person.Gender;
             personResponse.CountryId = person.CountryId;
-            personResponse.Country = person.Country;
+          //  personResponse.Country = person.Country;
             personResponse.Address = person.Address;
             personResponse.ReceiveNewsLetters = person.ReceiveNewsLetters;
 
@@ -234,8 +235,70 @@ namespace Service
 
         //-----------------------------------------------------------------------------------------------------------
 
-       
+        public async Task<bool> DeletePerson(Guid personId)
+        {
+            Person? person = await _db.Persons.FirstOrDefaultAsync(p => p.PersonId == personId);
+
+            if (personId == null)
+            {
+                return false;
+            }
+
+
+            _db.Persons.Remove(person);
+            await _db.SaveChangesAsync();
+            return true;
         }
 
+        //-----------------------------------------------------------------------------------------------------------
+
+        public async Task<List<PersonResponse>> GetFilterPerson(string Searchby, string Searchstring)
+        {
+            // Get all persons
+            List<PersonResponse> ActuvalData = GetAllPersons();
+            List<PersonResponse> FilteredData = ActuvalData;
+            if(string.IsNullOrEmpty(Searchby) || (Searchstring == null || Searchstring=="")) 
+                return FilteredData;
+
+            switch (Searchby)
+            {
+                case "PersonName":
+                    FilteredData = ActuvalData.Where(temp => (!string.IsNullOrEmpty(temp.PersonName) ?
+                       temp.PersonName.Contains(Searchstring, StringComparison.OrdinalIgnoreCase) : true)).ToList();
+                    break;
+
+                case "Gender":
+                    FilteredData = ActuvalData.Where(temp => (!string.IsNullOrEmpty(temp.Gender) ?
+                       temp.Gender.Contains(Searchstring, StringComparison.OrdinalIgnoreCase) : true)).ToList();
+                    break;
+
+                default: FilteredData = ActuvalData;
+                    break;
+            }
+
+            return FilteredData;
+        }
+
+        //-----------------------------------------------------------------------------------------------------------
+
+        public async Task<List<PersonResponse>> GetSortedPerson(List<PersonResponse> allPersons,string sortBy,SortOrderOptions sortOrder)
+        {
+            if (string.IsNullOrEmpty(sortBy))
+                return allPersons;
+
+            List<PersonResponse> sortedData = (sortBy, sortOrder) switch
+            {
+                (nameof(PersonResponse.PersonName), SortOrderOptions.ASC) => allPersons.OrderBy(person => person.PersonName, StringComparer.OrdinalIgnoreCase).ToList(),
+
+                (nameof(PersonResponse.PersonName), SortOrderOptions.DESC) => allPersons.OrderByDescending(person => person.PersonName, StringComparer.OrdinalIgnoreCase).ToList(),
+
+                _ => allPersons
+            };
+
+            return sortedData;
+        }
     }
+
+
+}
 

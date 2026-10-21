@@ -1,51 +1,252 @@
 ﻿@model List<ServiceContracts.DTO.PersonResponse>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="~/bootstrap/css/StyleSheet1.css" />
 
-	
-	<html>
-		<head>
-	    <link rel="stylesheet" href="~/bootstrap/css/StyleSheet1.css" />
-		</head>
-         
-		<body>
-	<table>
-	<h1>Person Data</h1>
-	<tr>
-			<th>Name </th>
-			<th>Email</th>
-			<th>Date of Birth</th>
-			<th>Gender</th>
-			<th>Address</th>
-			<th>Country</th>
-			<th>ReceiveNewsLetters</th>
-		</tr>
+    <style>
+       /* Applies to the table */
+.person-table {
+    /* Gives 30px space above the table */
+    margin-top: 30px;
+}
 
-	@foreach (var person in Model)
-	{
-		<tr>
-			<td>@person.PersonName</td>
-			<td>@person.PersonEmail</td>
-			<td>@person.DateOfBirth</td>
-			<td>@person.Gender</td>
-			<td>@person.Address</td>
-			<td>@person.Country</td>
-			<td>@person.ReceiveNewsLetters</td>
+        .search-dropdown {
+            width: 150px;
+            height: 40px;
+            padding: 5px 10px;
+            margin-left: 0;
+        }
 
-			<td>
-				<a asp-controller="Person"
-				asp-action="Edit"
-				
-				asp-route-id="@person.PersonId">Edit</a>
-			</td>
-				<td>
-					<a asp-controller="Person"
-					   asp-action="Delete"
-					   asp-route-id="@person.PersonId">Delete</a>
-				</td>
+/* Applies to the entire webpage body */
+body {
+    /* Gives 40px space inside the body from all four sides */
+    padding: 40px;
+}
 
-		</tr>
-		
-	}
-</table>
+
+/* Applies to the search input box */
+.search-box {
+
+    /* Moves the element from the top only when position is set
+       (top will NOT work normally without position) */
+            top: 90px;
+            
+            padding: 8px 12px;
+            width: 300px;
+            height: 40px;
+            margin-left: 5px;
+        
+
+    /* Gives space inside the search box:
+       8px = top & bottom
+       12px = left & right */
+    padding: 8px 12px;
+
+    /* Sets the search box width to 100px */
+    width: 100px;
+}
+
+        .search-button {
+            height: 40px;
+            padding: 8px 20px;
+            margin-left: 10px;
+            background-color: #1769e0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+/* Applies to the Add Person button */
+.add-button {
+
+    /* Sets the button background colour */
+    background-color: #1769e0;
+
+    /* Makes the button text white */
+    color: white;
+
+    /* Removes the default button border */
+    border: none;
+
+    /* Gives space inside the button:
+       8px = top & bottom
+       15px = left & right */
+    padding: 8px 15px;
+}
+
+
+/* Applies to the form inside .toolbar */
+.toolbar form {
+
+    /* Makes the form width only as wide as its content */
+    width: auto;
+
+    /* Removes outside space around the form */
+    margin: 0;
+
+    /* Removes inside space from the form */
+    padding: 0;
+
+    /* Removes background colour from the form */
+    background-color: transparent;
+
+    /* Removes rounded corners */
+    border-radius: 0;
+
+    /* Removes any shadow from the form */
+    box-shadow: none;
+
+
+    /* Makes the form a flex container */
+    display: flex !important;
+
+    /* Creates space between items inside the form */
+    justify-content: space-between !important;
+
+    /* Vertically aligns items in the center */
+    align-items: center;
+
+    /* Makes the form take the full available width */
+    width: 100%;
+
+    /* Gives 20px space below the form */
+    margin-bottom: 20px;
+
+    
+}
+
+        .sort-dropdown {
+            width: 150px;
+            height: 40px;
+            padding: 5px 10px;
+        }
+
+        .sort-button {
+            height: 40px;
+            padding: 8px 20px;
+            margin-left: 10px;
+            background-color: #1769e0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .sort-label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+      
+    </style> 
+</head>
+
+<body>
+
+    <h1>Person Data</h1>
+    <h2><center>Manage and view all data</center></h2>
+    
+    <div class="toolbar">
+
+        <form method="post" asp-controller="Person" asp-action="SortPerson">
+
+            <span class="sort-label">Sort By:</span>
+
+            <select name="sortBy" class="sort-dropdown">
+                <option value="PersonName">Person Name</option>
+            </select>
+
+            <select name="sortOrder" class="sort-dropdown">
+                <option value="ASC">Ascending</option>
+                <option value="DESC">Descending</option>
+            </select>
+
+            <button type="submit" class="sort-button">
+                Sort
+            </button>
+
+        </form>
+
+    </div>
+    <div class="toolbar">
+      
+
+        <form asp-controller="Person" asp-action="ADD" method="get">
+
+            <button type="submit" class="add-button" >
+                + Add Person
+            </button>
+        </form>
+        
+
+    </div>
+
+    <div class="toolbar">
+        <form asp-controller="Person" asp-action="FilterPerson" method="post">
+            <select name="Searchby" class="search-dropdown">
+                <option value="PersonName">Person Name</option>
+                <option value="Gender">Gender</option>
+            </select>
+            <input type="text"
+                   name="Searchstring"
+                   class="search-box"
+                   placeholder="Enter search text" />
+
+            <button type="submit" class="search-button">
+                Search
+            </button>
+            </form>
+
+    </div>
+
+    <table class="person-table">
+
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Date of Birth</th>
+                <th>Gender</th>
+                <th>Address</th>
+                <th>Country</th>
+                <th>Receive NewsLetters</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var person in Model)
+            {
+                <tr>
+                    <td>@person.PersonName</td>
+                    <td>@person.PersonEmail</td>
+                    <td>@person.DateOfBirth</td>
+                    <td>@person.Gender</td>
+                    <td>@person.Address</td>
+                    <td>@person.Country</td>
+                    <td>@person.ReceiveNewsLetters</td>
+
+                    <td>
+                        <a asp-controller="Person"
+                           asp-action="Edit"
+                           asp-route-id="@person.PersonId">
+                            Edit
+                        </a>
+                    </td>
+
+                    <td>
+                        <a asp-controller="Person"
+                           asp-action="Delete"
+                           asp-route-id="@person.PersonId">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
 </body>
 </html>

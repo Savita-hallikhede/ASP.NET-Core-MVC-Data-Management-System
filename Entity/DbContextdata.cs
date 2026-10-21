@@ -15,9 +15,9 @@ namespace Entity
 
         }
 
-        public DbSet<Country> Countries { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
 
-        public DbSet<Person> Persons { get; set; }  
+        public virtual DbSet<Person> Persons { get; set; }  
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
@@ -39,7 +39,7 @@ namespace Entity
             SqlParameter p_obj4 = new SqlParameter("@DateOfBirth",person.DateOfBirth);
             SqlParameter p_obj5 = new SqlParameter("@Gender", person.Gender);
             SqlParameter p_obj6 = new SqlParameter("@CountryId",person.CountryId);
-            SqlParameter p_obj7 = new SqlParameter("@Country", person.Country);
+            //SqlParameter p_obj7 = new SqlParameter("@Country", person.Country);
             SqlParameter p_obj8 = new SqlParameter("@Address",person.Address);
             SqlParameter p_obj9 = new SqlParameter("@ReceiveNewsLetters", person.ReceiveNewsLetters);
 
@@ -52,7 +52,7 @@ namespace Entity
             list_sql.Add(p_obj4);
             list_sql.Add(p_obj5);
             list_sql.Add(p_obj6);
-            list_sql.Add(p_obj7);
+          //  list_sql.Add(p_obj7);
             list_sql.Add(p_obj8);
             list_sql.Add(p_obj9);
 

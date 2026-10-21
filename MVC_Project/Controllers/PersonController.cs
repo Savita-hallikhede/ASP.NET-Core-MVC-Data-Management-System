@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AspNetCoreGeneratedDocument;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Service;
 using ServiceContracts.DTO;
+using ServiceContracts.Enum;
 using ServiceContracts.Interface;
 using System.Security.Cryptography;
 namespace MVC_Project.Controllers
@@ -179,7 +182,47 @@ namespace MVC_Project.Controllers
             //return View("PersonData" , personResponse);
         }
 
+        //-----------------------------------------------------------------------------------------------------------
 
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            await Person.DeletePerson(id);
+
+            return RedirectToAction("PersonData1");
+        }
+
+
+        //-----------------------------------------------------------------------------------------------------------
+
+
+        [HttpGet]
+        public IActionResult FilterPerson()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> FilterPerson(string Searchby,string Searchstring)
+        {
+            List<PersonResponse> result =await Person.GetFilterPerson(Searchby, Searchstring);
+
+            return View(result);
+        }
+
+        //-----------------------------------------------------------------------------------------------------------
+
+
+        [HttpPost]
+        public async Task<IActionResult> SortPerson(string sortBy,SortOrderOptions sortOrder)
+        {
+            List<PersonResponse> allPersons = Person.GetAllPersons();
+
+            List<PersonResponse> sortedPersons =await Person.GetSortedPerson(allPersons,sortBy,sortOrder);
+
+            return View("PersonData1", sortedPersons);
+        }
     }
 }
 

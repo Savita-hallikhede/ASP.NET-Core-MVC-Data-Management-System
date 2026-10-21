@@ -46,9 +46,6 @@ namespace Entity.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<Guid?>("CountryId")
                         .HasColumnType("uniqueidentifier");
 
@@ -69,7 +66,21 @@ namespace Entity.Migrations
 
                     b.HasKey("PersonId");
 
+                    b.HasIndex("CountryId");
+
                     b.ToTable("Persons");
+                });
+
+            modelBuilder.Entity("Entity.Person", b =>
+                {
+                    b.HasOne("Entity.Country", null)
+                        .WithMany("Persons")
+                        .HasForeignKey("CountryId");
+                });
+
+            modelBuilder.Entity("Entity.Country", b =>
+                {
+                    b.Navigation("Persons");
                 });
 #pragma warning restore 612, 618
         }

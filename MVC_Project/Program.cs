@@ -20,7 +20,7 @@ builder.Services.AddScoped<ICountrySC, CountryService>();
 builder.Services.AddScoped<IPersonSC, PersonService>();
 
 builder.Services.AddScoped<IFileData, FilesFormatData>();
-
+ 
 
 var app = builder.Build();
 RotativaConfiguration.Setup("wwwroot", wkhtmltopdfRelativePath: "Rotativa");
